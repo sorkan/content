@@ -882,6 +882,73 @@ Enumerates all users that are members of a group.
 |  | 2016-04-12T15:01:52.000Z | password: {} recovery_question: {"question": "born city"} provider: {"type": "OKTA", "name": "OKTA"} | 00u66lckd7lpjidYi0h7 | 2020-03-12T09:54:36.000Z | 2020-02-24T11:42:22.000Z | 2020-02-24T11:40:08.000Z | ACTIVE |  | id: oty66lckcyVcGzS0h7 | self: {"href": "https://yourdomain.okta.com/api/v1/users/00uclpjidYi0h7"} |
 
 
+### okta-list-users
+***
+Lists all users in your organization.  A subset of users can be returned that match a supported filter expression or query.
+
+
+#### Base Command
+
+`okta-list-users`
+##### Input
+
+| **Argument Name** | **Description** | **Required** |
+| --- | --- | --- |
+| limit | The maximum number of results to return. The default is 200. | Optional | 
+
+##### Context Output
+
+| **Path** | **Type** | **Description** |
+| --- | --- | --- |
+| Account.ID | String | Unique key for the group. | 
+| Account.Created | Date | Timestamp for when the group was created. | 
+| Account.Login | String | The user's login. | 
+| Account.First Name | String | The user's first name |
+| Account.Last Name | String | The user's last name |
+| Account.Email | String | The user's primary email address |
+| Account.Second Email | String |The user's secondary email address
+| Account.Activated | Boolean | Indicates if the user has been activated |
+| Account.Last Updated | Date | Timestamp for when the user's profile was last updated. | 
+| Account.Last Login | Date | Timestamp for when the user last logged in. |
+| Account.Password Changed | Date | Timestamp when user last changed their password. |
+| Account.Status | String | User's current status |
+| Account.Status Changed | Date | Timestamp when user's status was last changed. |
+
+
+##### Command Example
+```!okta-list-users query=demisto``
+
+#### Context Example
+```[
+     {'id': '00xxxxxxxxxxxxxxxxxx96', 
+      'status': 'ACTIVE', 
+      'created': '2021-12-10T15:11:00.000Z', 
+      'activated': None, 
+      'statusChanged': '2021-12-10T15:16:22.000Z', 
+      'lastLogin': '2021-12-13T16:01:41.000Z', 
+      'lastUpdated': '2021-12-10T15:16:22.000Z', 
+      'passwordChanged': '2021-12-10T15:16:22.000Z', 
+      'type': {'id': 'oxxxxxxxxxxxxxxxxxxxxx96'}, 
+      'profile': {'firstName': 'XXX', 
+                  'lastName': 'XXXX', 
+                  'mobilePhone': None, 
+                  'secondEmail': None, 
+                  'login': 'xxx.xxxx@xxxxx.xxx', 
+                  'email': 'xxx.xxxx@xxxxx.xxx'
+                  }, 
+       'credentials': {
+                       'password': {}, 
+                       'provider': {
+                                    'type': 'OKTA', 
+                                    'name': 'OKTA'}
+                       }, 
+        '_links': {'self': {'href': 'https://xxxxxxxxxxxxx.okta.com/api/v1/users/00xxxxxxxxxxxxxxxxxx96'}}
+      }
+      :
+      :
+   ]
+```
+
 ### okta-list-groups
 ***
 Lists groups in your organization. A subset of groups can be returned that match a supported filter expression or query.
